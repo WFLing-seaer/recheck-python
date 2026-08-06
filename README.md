@@ -1,3 +1,9 @@
+安装：`pip install recheck-python`
+
+To install: `pip install recheck-python`
+
+<br/>
+
 recheck的Python封装层
 
 Python wrapper for recheck
