@@ -115,7 +115,7 @@ class Rechecker:
             line = self._process.stdout.readline()
             if not line:
                 break
-            resp = orjson.loads(line)
+            resp = orjson.loads(line.decode("utf8", "replace").encode("utf8"))
             if "id" in resp:
                 rid = resp["id"]
                 with self._cond:
