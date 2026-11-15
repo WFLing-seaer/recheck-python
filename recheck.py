@@ -82,6 +82,7 @@ def _reverbose(regex):
 
 
 class Complexity(IntEnum):
+    UNKNOWN = 0
     CONSTANT = 1
     LINEAR = 2
     SAFE = 3
@@ -115,7 +116,7 @@ class Rechecker:
             line = self._process.stdout.readline()
             if not line:
                 break
-            resp = orjson.loads(line.decode("utf8", "replace").encode("utf8"))
+            resp = orjson.loads(line)
             if "id" in resp:
                 rid = resp["id"]
                 with self._cond:
@@ -164,6 +165,7 @@ class Rechecker:
             "safe": Complexity.SAFE,
             "polynomial": Complexity.POLYNOMIAL,
             "exponential": Complexity.EXPONENTIAL,
+            "": Complexity.UNKNOWN,
         }
         complexity_enum = type_map[type_str]
         return complexity_enum, degree
